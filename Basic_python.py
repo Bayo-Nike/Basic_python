@@ -42,7 +42,7 @@ principal = 10000
 rate = 0.05 # 5% annual interest
 term = 12 # 12 months
 monthly_payment = (principal * rate) / term
-print("Monthly payment:", round(monthly_payment)) # Output: Monthly payment: 41.666666666666664
+print("Monthly payment:", round(monthly_payment,2)) # Output: Monthly payment: 41.666666666666664
 
 #Conditional
 balance = 300
@@ -63,3 +63,36 @@ for balance in balances:
     total_deposit += balance
      
 print("Total deposit for all accounts:", total_deposit)
+
+# Functions
+def calculate_mortgage(principal, rate, term):
+    monthly_rate = rate / 12
+    months = term * 12
+    monthly_payment = principal * (monthly_rate * (1 +
+    monthly_rate) ** months) / ((1 + monthly_rate) ** months- 1)
+    return monthly_payment
+payment = calculate_mortgage(250000, 0.04, 30)
+print("Monthly mortgage payment:", round(payment, 2))
+
+# Functions
+def calculate_annual_fee(account_balance,account_type):
+    fee=5000
+    if account_type == "premium":
+        annual_fee=account_balance+fee
+    else:
+        annual_fee=account_balance-fee
+    return annual_fee
+
+calculate_annual_fee = calculate_annual_fee(250000, "premium")
+print("calculate_annual_fee:", round(calculate_annual_fee, 2))
+
+# Functions
+def is_fraudulent_transaction(trxAMount,threshold):
+    
+    if trxAMount > threshold:
+        return "True"
+    else:
+        return "False"
+
+is_fraudulent_transaction = is_fraudulent_transaction(200, 2000)
+print("is_fraudulent_transaction:", is_fraudulent_transaction)
